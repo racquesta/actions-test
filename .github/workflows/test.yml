@@ -16,3 +16,7 @@ jobs:
         run: echo ${GITHUB_REF#refs/*/} > README.md
       - name: inspect README
         run: cat README.md
+      - run: git add .
+      - run: git commit -m "Auto updating the version"
+      - run: git push origin main
+
