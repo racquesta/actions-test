@@ -16,7 +16,7 @@ jobs:
         run: echo ${GITHUB_REF#refs/*/} > README.md
       - name: inspect README
         run: cat README.md
-        run: |
+      - run: |
           git config --global user.name "Github Bot"
           git config --global user.email "<>"
       - run: git add .
