@@ -1,0 +1,10 @@
+name: test
+on: [push]
+jobs:
+  job1:
+    name: Modify
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: inspect files
+        run: ls -la
