@@ -1,5 +1,8 @@
 name: test
-on: [push]
+on:
+  push: 
+    tags:
+     - *
 jobs:
   job1:
     name: Modify
@@ -7,5 +10,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: inspect files
-        run: ls -la
+      - name: tag name
+        run: echo "TAG NAME = ${ GITHUB_REF#refs/*/ }"
+      - name: echo ${ GITHUB_REF#refs/*/ } > README.md
+      - name: inspect README
+        run: cat README.md
