@@ -12,6 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: tag name
         run: echo "TAG NAME = ${ GITHUB_REF#refs/*/ }"
-      - name: echo ${ GITHUB_REF#refs/*/ } > README.md
+      - name: update readme
+        run: echo ${ GITHUB_REF#refs/*/ } > README.md
       - name: inspect README
         run: cat README.md
