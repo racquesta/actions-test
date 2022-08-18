@@ -18,18 +18,18 @@ jobs:
       - run: echo ${{ steps.yaml-data.outputs.data }}
       - name: save output
         id: versions
-        run: echo '::set-output name=goVersions::{"goVersions":${{ steps.yaml-data.outputs.data }}}'
+        run: echo '::set-output name=goVersions::${{ steps.yaml-data.outputs.data }}'
   job-middle:
     runs-on: ubuntu-latest
     needs: job1
     steps: 
-      - run: echo ${{ fromJSON(needs.job1.outputs.goVersions).goVersions }}
+      - run: echo ${{ fromJSON(needs.job1.outputs.goVersions) }}
   job2: 
     name: the matrix
     needs: job1
     strategy:
       matrix:
-        goVersion: ${{ fromJSON(needs.job1.outputs.goVersions).goVersions }}
+        goVersion: ${{ fromJSON(needs.job1.outputs.goVersions) }}
         distro: ["macos-latest", "ubuntu-latest"]
     runs-on: ${{ matrix.distro }}
     steps:
