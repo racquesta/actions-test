@@ -1,7 +1,7 @@
 name: prerelease
 on:
   release:
-    types: [prerelease]
+    types: [prereleased]
 jobs:
   job1:
     name: Test prerelease
