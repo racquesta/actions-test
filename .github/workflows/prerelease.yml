@@ -1,0 +1,12 @@
+name: prerelease
+on:
+  release:
+    types: [prerelease]
+jobs:
+  job1:
+    name: Test prerelease
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+      - run: echo "this ran"
+
