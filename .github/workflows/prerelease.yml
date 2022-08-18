@@ -18,11 +18,11 @@ jobs:
       - run: echo ${{ steps.yaml-data.outputs.data }}
       - name: save output
         run: echo "::set-output name=goVersions::${{ steps.yaml-data.outputs.data }}"
-        run: echo 
   job-middle:
     runs-on: ubuntu-latest
     needs: job1
-    steps: echo ${{ needs.job1.outputs.goVersions }}
+    steps: 
+      - run: echo ${{ needs.job1.outputs.goVersions }}
   job2: 
     name: the matrix
     needs: job1
