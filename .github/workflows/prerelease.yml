@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Test read-yaml
     outputs:
-      goVersions: ${{ steps.yaml-data.outputs.goVersions }}
+      goVersions: ${{ steps.versions.outputs.goVersions }}
     steps:
       - uses: actions/checkout@v1
       - name: Run read-yaml action
