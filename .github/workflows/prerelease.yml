@@ -18,7 +18,7 @@ jobs:
       - name: save output
         run: echo "::set-output name=goVersions::${{ steps.yaml-data.outputs.data }}"
   job2: 
-  - name: the matrix
+    name: the matrix
     needs: job1
     strategy:
       matrix:
