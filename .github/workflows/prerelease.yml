@@ -17,7 +17,8 @@ jobs:
           key-path: '["goVersions"]' # Access the runs key then the using key and retuns the value.
       - run: echo ${{ steps.yaml-data.outputs.data }}
       - name: save output
-        run: echo "::set-output name=goVersions::${{ steps.yaml-data.outputs.data }}"
+        id: versions
+        run: echo "::set-output name=goVersions::hi"
   job-middle:
     runs-on: ubuntu-latest
     needs: job1
