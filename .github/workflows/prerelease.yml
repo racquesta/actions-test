@@ -15,6 +15,7 @@ jobs:
         with:
           file: './build.yml'          # File to read from
           key-path: '["goVersions"]' # Access the runs key then the using key and retuns the value.
+      - run: echo ${{ steps.yaml-data.outputs.data }}
       - name: save output
         run: echo "::set-output name=goVersions::${{ steps.yaml-data.outputs.data }}"
   job2: 
