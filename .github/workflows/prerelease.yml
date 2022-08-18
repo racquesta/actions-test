@@ -4,8 +4,31 @@ on:
     types: [prereleased]
 jobs:
   job1:
-    name: Test prerelease
     runs-on: ubuntu-latest
+    name: Test read-yaml
+    outputs:
+      goVersions: ${{ steps.yaml-data.outputs.goVersions }}
     steps:
-      - name: echo
-        run: echo "this ran"
+      - uses: actions/checkout@v1
+      - name: Run read-yaml action
+        id: yaml-data
+        uses: KJ002/read-yaml@main      # You may wish to replace main with a version tag such as '1.6' etc.
+        with:
+          file: './build.yml'          # File to read from
+          key-path: '["goVersions"]' # Access the runs key then the using key and retuns the value.
+      - name: save output
+        run: echo "::set-output name=goVersions::${{ steps.yaml-data.outputs.data }}"
+  job2: 
+  - name: the matrix
+    needs: job1
+    strategy:
+      matrix:
+        goVersion: ${{ needs.job1.outputs.goVersions }}
+        distro: ["macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.distro }}
+    steps:
+      - name: print stuff
+        run: echo ${{ matrix.goVersion}}
+    
+
+
