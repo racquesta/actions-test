@@ -6,7 +6,7 @@ on:
       TAG: 
         required: true
         type: string
-    # secrets:
+    secrets:
     #   AWS_LOCAL_FILE: 
     #     required: true
     #   AWS_S3_FILEPATH:
@@ -19,7 +19,6 @@ on:
     #     required: true
       GH_TOKEN:
         required: true
-
 jobs: 
   remove-binaries-rollback-manifest:
     runs-on: ubuntu-latest
