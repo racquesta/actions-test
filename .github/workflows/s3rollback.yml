@@ -7,16 +7,6 @@ on:
         required: true
         type: string
     secrets:
-    #   AWS_LOCAL_FILE: 
-    #     required: true
-    #   AWS_S3_FILEPATH:
-    #     required: true
-    #   AWS_REGION:
-    #     required: true
-    #   AWS_ROLE: 
-    #     required: true
-    #   AWS_CLI_DIR:
-    #     required: true
       GH_TOKEN:
         required: true
 jobs: 
