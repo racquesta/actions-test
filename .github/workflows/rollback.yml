@@ -6,7 +6,7 @@ on:
 
 jobs:
   rollback-develop:
-    uses: ./github/workflows/s3rollback.yml
+    uses: ./.github/workflows/s3rollback.yml
     with:
       TAG: ${GITHUB_REF#refs/*/}
     secrets:
