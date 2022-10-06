@@ -8,7 +8,7 @@ jobs:
   rollback-develop:
     uses: ./.github/workflows/s3rollback.yml
     with:
-      TAG: ${GITHUB_REF#refs/*/}
+      TAG: ${{GITHUB_REF#refs/*/}}
     secrets:
       # AWS_LOCAL_FILE: ${{ secrets.AWS_LOCAL_FILE }}
       # AWS_S3_FILEPATH: ${{ secrets.AWS_S3_FILEPATH_DEV }}
