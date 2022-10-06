@@ -42,8 +42,8 @@ jobs:
         id: get-latest-tag
         with: 
           route: GET /repos/{owner}/{repo}/releases/latest
-          owner: nextmv-io
-          repo: platform-sdk
+          owner: racquesta
+          repo: actions-test
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Rollback Current Version
