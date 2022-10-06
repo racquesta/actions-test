@@ -1,0 +1,18 @@
+name: rollback
+
+on:
+  release:
+    types: [deleted]
+
+jobs:
+  rollback-develop:
+    uses: ./github/workflows/s3rollback
+    with:
+      TAG: ${GITHUB_REF#refs/*/}
+    secrets:
+      # AWS_LOCAL_FILE: ${{ secrets.AWS_LOCAL_FILE }}
+      # AWS_S3_FILEPATH: ${{ secrets.AWS_S3_FILEPATH_DEV }}
+      # AWS_REGION: ${{ secrets.AWS_REGION }}
+      # AWS_ROLE: ${{ secrets.AWS_ROLE_DEV }}
+      # AWS_CLI_DIR: ${{ secrets.AWS_CLI_DIR_DEV }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,52 @@
+name: s3rollback
+
+on:
+  workflow_call:
+    inputs: 
+      TAG: 
+        required: true
+        type: string
+    # secrets:
+    #   AWS_LOCAL_FILE: 
+    #     required: true
+    #   AWS_S3_FILEPATH:
+    #     required: true
+    #   AWS_REGION:
+    #     required: true
+    #   AWS_ROLE: 
+    #     required: true
+    #   AWS_CLI_DIR:
+    #     required: true
+      GH_TOKEN:
+        required: true
+
+jobs: 
+  remove-binaries-rollback-manifest:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ inputs.TAG }}
+    # steps:
+    #   - name: Configure AWS credentials
+    #     uses: aws-actions/configure-aws-credentials@b8c74de753fbcb4868bf2011fb2e15826ce973af
+    #     with:
+    #       role-to-assume: ${{ secrets.AWS_ROLE }}
+    #       aws-region: ${{ secrets.AWS_REGION }}
+    #       role-duration-seconds: 1200
+    #   - name: Remove Latest Tag from Manifest
+    #     run: |
+    #       aws s3 cp ${{ secrets.AWS_S3_FILEPATH }} ${{ secrets.AWS_LOCAL_FILE }};
+    #       yq -i ".currentVersion = \"${{ env.TAG }}\"" ${{ secrets.AWS_LOCAL_FILE }};
+    #       aws s3 cp ${{ secrets.AWS_LOCAL_FILE }} ${{ secrets.AWS_S3_FILEPATH }};
+      - name: Get latest tag
+        uses: octokit/request-action@v2.1.0
+        id: get-latest-tag
+        with: 
+          route: GET /repos/{owner}/{repo}/releases/latest
+          owner: nextmv-io
+          repo: platform-sdk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Rollback Current Version
+        run: echo "latest release ${{ fromJson(steps.get-latest-tag.outputs.data).tag }}"
+
+
