@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TAG: ${{ inputs.TAG }}
-    # steps:
+    steps:
     #   - name: Configure AWS credentials
     #     uses: aws-actions/configure-aws-credentials@b8c74de753fbcb4868bf2011fb2e15826ce973af
     #     with:
